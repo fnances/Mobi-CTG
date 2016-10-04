@@ -1,12 +1,15 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, WebView } from "react-native";
 import React, { Component } from "react";
 import exponent from "exponent";
 import { Button, Container, Icon } from "react-native-elements";
 import videos from "../../config/videos.js";
 import content from "../../config/content.js";
+import player from "./webviewPlayer.js";
 const { scenesContent } = content;
 
 const { Video } = exponent.Components;
+
+const videosStartAtStep = 2;
 
 class Step extends Component {
   constructor () {
@@ -24,7 +27,8 @@ class Step extends Component {
       this.setState({
         actualStep: actualStep + 1,
         steps: [...steps, { step: actualStep, feedback }],
-        feedback: ""
+        feedback: "",
+        videoLoaded: false
       });
     }
     else {
@@ -38,19 +42,26 @@ class Step extends Component {
     this.setState({ feedback });
   }
   onVideoLoad () {
-    this.setState({ videoLoaded: true})
+      this.setState({ videoLoaded: true})
   }
   render () {
     const { actualStep, videoLoaded } = this.state;
     const { stage, description, video = false, buttonImage = false } = scenesContent[actualStep];
+    let loading = null;
+    let source = (video) ? () => videos()[actualStep - videosStartAtStep] : null ;
+    if (video && !videoLoaded) {
+      loading = <Text>Loading...</Text>;
+    }
+
 
     return (
       <View style={styles.container} >
         <Text style={styles.header}> {stage}</Text>
         <Text style={styles.description}>{description}</Text>
-        {video && !videoLoaded && <Text> Loading </Text>}
 
-        {video && <Video style={styles.videoLoaded} resizeMode="stretch" source={videos()[actualStep - 2]} onLoad={() => this.onVideoLoad.bind(this)} />}
+        {loading}
+
+        {video && <WebView style={styles.videoLoaded} source={{ html: player(source) }} onLoad={() => this.onVideoLoad.bind(this)} />}
 
         <View style={styles.actions}>
           <Icon size={75} name="sentiment-dissatisfied" onPress={this.feedback.bind(this, "sad")}/>

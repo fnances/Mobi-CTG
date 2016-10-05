@@ -53,7 +53,7 @@ class Main extends Component {
           style={styles.container}
           initialRoute={{ name: "HomeScene"}}
           renderScene={this.renderScene}
-          configureScene={(route, routeStack) => Navigator.SceneConfigs.FloatFromLeft}/>
+          configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid}/>
 
       </View>
     );
@@ -62,7 +62,7 @@ class Main extends Component {
 
 const styles = StyleSheet.create({
 container: {
-  alignItems: "stretch",
+
   flex: 1
 }
 });

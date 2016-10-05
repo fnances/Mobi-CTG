@@ -7,14 +7,14 @@ let scenesContent = [
     description: `W celu wykonania badania zastosuj się do poniższych instrukcji
       Na pół godziny przed badaniem nie podejmuj wysiłku fizycznego,
       zrelaksuj się, ale nie urządzaj sobie drzemki.
-       Nie pij napojów działających pobudzająco, np. kawa, napoje
+      Nie pij napojów działających pobudzająco, np. kawa, napoje
       energetyczne.
       Możesz w tym czasie coś zjeść i wypić przynajmniej szklankę wody
       mineralnej niegazowanej.
-       Możesz też przygotować na czas badania wodę mineralną niegazowaną
+      Możesz też przygotować na czas badania wodę mineralną niegazowaną
       do picia (najlepiej w małym, wygodnym naczyniu) i coś na przekąskę, np.
       suszone owoce, orzechy.
-       Na czas badania wyłącz telefon komórkowy lub odłóż go na kilka metrów
+      Na czas badania wyłącz telefon komórkowy lub odłóż go na kilka metrów
       od urządzenia.
       `,
   },
@@ -62,13 +62,13 @@ let scenesContent = [
   {
     stage: "ETAP 4 - WYKONANIE BADANIA",
     description: `Kontrolowanie czasu badania`,
-    video: true,
-    timer: true
+    video:true
   },
   {
     stage: "ETAP 4 - WYKONANIE BADANIA",
     description: `ZAKOŃCZENIE BADANIA∙ \n Po upływie 30 minut wciśnij ten sam przycisk, co poprzednio – drugi od lewej strony. W tym momencie badanie zostało zakończone.`,
-    buttonImage: ""
+    buttonImage: "",
+    timer: true
   },
   {
     stage: "ETAP 5 ­- ODŁĄCZENIE URZĄDZENIA",
@@ -100,10 +100,10 @@ let scenesContent = [
 
 
 const surveyOptions = {
-  pregnancy: ["pierwsza", "druga", "trzecia", "czwarta", "piąta", "szosta", "osma", "dziewiąta", "dziesiąta"],
-  KTG: ["pierwsze", "druge", "trzecie", "czwarte", "piąte", "szoste", "osme", "dziewiąte", "dziesiąte"],
-  stressLevel: ["mały stres", "umiarkowany stres", "średni stres", "duzy stres"],
-  satisfactionLevel: ["mały", "sredni", "duzy"]
+  pregnancy: ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
+  KTG: ["Pierwsze", "Druge", "Trzecie", "Czwarte", "Piąte", "Szoste", "osme", "dziewiąte", "dziesiąte"],
+  stressLevel: ["Mały stres", "Umiarkowany stres", "Średni stres", "Duzy stres"],
+  satisfactionLevel: ["Mały", "Średni", "Duzy"]
 };
 
 

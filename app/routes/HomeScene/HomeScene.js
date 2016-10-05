@@ -26,7 +26,7 @@ class HomeScene extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.header}>JAK KORZYSTAĆ Z APLIKACJI</Text>
-        <Text style={styles.text}> {description} </Text>
+        <Text style={styles.text}>{description} </Text>
         <Button buttonStyle={styles.button} onPress={() => this.goToSteps()} title={"ZACZYNAMY"}/>
       </View>
     );
@@ -38,16 +38,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
+    backgroundColor: "#3F51B5"
   },
   header: {
     alignSelf: "center",
     fontSize: 50,
+    color: "#C5CAE9"
   },
   text: {
-    fontSize: 25
+    fontSize: 25,
+    alignSelf:"center",
+    color: "#C5CAE9",
+    textAlign: "center"
   },
   button: {
+    backgroundColor: "#F50057",
+
   }
 });
 

@@ -68,6 +68,7 @@ let scenesContent = [
     stage: "ETAP 4 - WYKONANIE BADANIA",
     description: `ZAKOŃCZENIE BADANIA∙ \n Po upływie 30 minut wciśnij ten sam przycisk, co poprzednio – drugi od lewej strony. W tym momencie badanie zostało zakończone.`,
     buttonImage: "",
+    video: true,
     timer: true
   },
   {

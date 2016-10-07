@@ -17,10 +17,10 @@ class Step extends Component {
       actualStep: 0,
       steps: [],
       feedback: "",
-      videoLoaded: false,
+      videoFinished: false,
       actualTime: null
     };
-    this.interval();
+
   }
   nextStep () {
     const { actualStep, steps, feedback } = this.state;
@@ -28,7 +28,8 @@ class Step extends Component {
       this.setState({
         actualStep: actualStep + 1,
         steps: [...steps, { step: actualStep, feedback }],
-        feedback: ""
+        feedback: "",
+        videoFinished: false
       });
     }
     else {
@@ -46,63 +47,84 @@ class Step extends Component {
   }
   interval() {
     let timeToPass = 1800000;
-    let counter = 0;
     setInterval(() => {
       timeToPass -= 1000;
-      let minutes = Math.floor(timeToPass / 60);
-      let	seconds = Math.floor(timeToPass % 60);
+      let minutes = Math.floor((timeToPass / 1000) / 60);
+      let	seconds = Math.floor((timeToPass / 1000) % 60);
 
       this.setState({ actualTime: getFormattedTime(minutes, seconds) });
-      this.renderTimer();
     }, 1000);
   }
   renderTimer () {
     return (
-          <Text style={styles.timer}>
+      <View style={styles.timer}>
+          <Text style={styles.timerTime}>
             {this.state.actualTime}
           </Text>
-
+          <Button
+            buttonStyle={styles.timerStart}
+            title="Zacznij odliczanie"
+            onPress={() => this.interval()}
+            />
+        </View>
+    );
+  }
+  renderUserActions () {
+    return (
+      <View style={styles.actions}>
+        <Text style={styles.feedbackHeader}>Ocena kroku: </Text>
+          <Entypo
+            style={styles.icon}
+            name="emoji-sad"
+            onPress={() => this.feedback("sad")}
+            />
+          <Entypo
+            style={styles.icon}
+            name="emoji-neutral"
+            onPress={() => this.feedback("neutral")}
+            />
+          <Entypo
+            style={styles.icon}
+            name="emoji-happy"
+            onPress={() => this.feedback("happy")}
+            />
+        </View>
+    );
+  }
+  renderVideo (actualStep) {
+    return (
+      <Video
+        style={styles.video}
+        resizeMode="stretch"
+        source={videos()[actualStep - 2]}
+        onEnd={() => this.setState({ videoFinished: true })}
+        />
     );
   }
   render () {
-    const { actualStep, videoLoaded } = this.state;
+    const { actualStep, videoFinished } = this.state;
     const { stage, description, video = false, buttonImage = false, timer = false } = scenesContent[actualStep];
 
     return (
       <View style={styles.container} >
         <Text style={styles.header}> {stage}</Text>
         <Text style={styles.description}>{description}</Text>
-        {video && !videoLoaded && <Text></Text>}
 
-        {video && <Video style={styles.videoLoaded} resizeMode="stretch" source={videos()[actualStep - 2]} onLoad={() => this.onVideoLoad.bind(this)} />}
+        {video && this.renderVideo(actualStep)}
 
-        <View style={styles.actions}>
+        {timer && videoFinished && this.renderTimer()}
 
-        {timer && this.renderTimer()}
+        {videoFinished && this.renderUserActions()}
 
-          <Entypo style={styles.icon}  name="emoji-sad"  onPress={this.feedback.bind(this, "sad")}/>
-          <Entypo style={styles.icon}  name="emoji-neutral" onPress={this.feedback.bind(this, "neutral")}/>
-          <Entypo style={styles.icon}  name="emoji-happy"   onPress={this.feedback.bind(this, "happy")}/>
-
-
-        </View>
-        <Button Button buttonStyle={styles.nextStep} onPress={this.nextStep.bind(this)} title="PRZEJDŹ DALEJ"/>
+        <Button buttonStyle={styles.nextStep} onPress={this.nextStep.bind(this)} title="PRZEJDŹ DALEJ"/>
       </View>
     );
   }
 }
-
-
-
-
-function getFormattedTime(mins, seconds) {
-			if (mins < 10) {
-				var mins = "0" + mins;
-			}
-			if (seconds < 10) {
-				var seconds = "0" + seconds;
-			}
-			return mins + ":" + seconds;
+function getFormattedTime(mins, secs) {
+      const minutes = (mins < 10) ? `0${mins}` : mins;
+      const seconds = (secs < 10) ? `0${secs}` : secs;
+			return `${minutes}:${seconds}`;
 }
 
 const styles = StyleSheet.create({
@@ -111,27 +133,26 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-around",
     backgroundColor: "#3F51B5",
-
-
   },
   header: {
     fontSize: 50,
     color: "#C5CAE9",
     alignSelf: "center",
     padding: 20
-
   },
-  videoLoaded: {
-    flex: 2,
+  video: {
+    flex: 3,
     alignSelf: "center",
     width: (90/100) * 1280,
-    height: 280,
+    margin: 15,
   },
   actions: {
     flexDirection: "row",
     flex: 1,
     alignSelf: "center",
-
+  },
+  feedbackHeader: {
+    alignSelf: "center"
   },
   description: {
     fontSize: 25,
@@ -142,24 +163,31 @@ const styles = StyleSheet.create({
   nextStep: {
     flex: 1,
     backgroundColor: "#F50057",
-
+    maxHeight: 60,
+    margin: 15
   },
   icon: {
-    fontSize: 40,
+    fontSize: 70,
     color: "#000",
     padding: 10,
     color: "#C5CAE9",
-
-
   },
   timer: {
-    fontSize: 40,
     flex: 1,
-    color: "#C5CAE9",
-    textAlign: "center"
-
+    flexDirection: "row"
   },
-
+  timerTime: {
+    fontSize: 40,
+    color: "#C5CAE9",
+    flex: 1,
+    textAlign: "center",
+    alignItems: "center"
+  },
+  timerStart: {
+    backgroundColor: "lime",
+    flex: 1,
+    maxWidth: 150
+  }
 });
 
 export default Step;

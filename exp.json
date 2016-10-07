@@ -1,11 +1,11 @@
 {
-  "name": "app-ankieta",
+  "name": "mobictg",
   "description": "An empty new project",
-  "slug": "app-ankieta",
+  "slug": "mobictg",
   "sdkVersion": "10.0.0",
   "version": "1.0.0",
   "orientation": "landscape",
-  "primaryColor": "#000000",
+  "primaryColor": "#cccccc",
   "iconUrl": "https://s3.amazonaws.com/exp-brand-assets/ExponentEmptyManifest_192.png",
   "notification": {
     "iconUrl": "https://s3.amazonaws.com/exp-us-standard/placeholder-push-icon-blue-circle.png",

@@ -1,14 +1,17 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, WebView } from "react-native";
 import React, { Component } from "react";
 import exponent from "exponent";
 import { Button, Container, Icon } from "react-native-elements";
 import videos from "../../config/videos.js";
 import content from "../../config/content.js";
+
 import { FontAwesome, Ionicons, Entypo } from "@exponent/vector-icons"
 
 const { scenesContent } = content;
 
 const { Video } = exponent.Components;
+
+const videosStartAtStep = 2;
 
 class Step extends Component {
   constructor () {
@@ -30,6 +33,7 @@ class Step extends Component {
         steps: [...steps, { step: actualStep, feedback }],
         feedback: "",
         videoFinished: false
+
       });
     }
     else {
@@ -43,7 +47,7 @@ class Step extends Component {
     this.setState({ feedback });
   }
   onVideoLoad () {
-    this.setState({ videoLoaded: true})
+      this.setState({ videoLoaded: true})
   }
   interval() {
     let timeToPass = 1800000;

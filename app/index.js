@@ -2,11 +2,12 @@ import { View, Text, StyleSheet, Dimensions, Navigator } from "react-native";
 import React, { Component } from "react";
 import Exponent from "exponent";
 import HomeScene from "./routes/HomeScene/";
-import LoadingScene from "./routes/LoadingScreen/";
 import Step from "./routes/Step/"
 import Survey from "./routes/Survey/";
 import { Button } from "react-native-elements";
+import EStyleSheet from "react-native-extended-stylesheet";
 
+import Logo from "./components/Logo/logo";
 
 class Main extends Component {
   constructor () {
@@ -15,10 +16,12 @@ class Main extends Component {
       assetsLoaded: false,
       step: 1
     };
-
+    EStyleSheet.build();
     const { height, width } = Dimensions.get("window");
     styles.container.height = height;
     styles.container.width = width;
+
+    setTimeout(() => this.setState({ assetsLoaded: true}), 1500);
 
   }
   renderScene (route, navigator) {
@@ -40,11 +43,9 @@ class Main extends Component {
         break;
     }
   }
-  hide () {
-    this.setState({ assetsLoaded: !this.state.assetsLoaded });
-  }
   render () {
-    // if (!this.state.assetsLoaded) return <LoadingScene hide={this.state.assetsLoaded}/>;
+    if (!this.state.assetsLoaded) return <Logo />;
+
     const { scene } = this.state;
     return (
       <View style={styles.container} >
@@ -62,7 +63,6 @@ class Main extends Component {
 
 const styles = StyleSheet.create({
 container: {
-
   flex: 1
 }
 });

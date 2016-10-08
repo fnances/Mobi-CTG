@@ -4,99 +4,112 @@ import videos from "./videos.js";
 let scenesContent = [
     {
     stage: "ETAP 1 - PRZYGOTOWANIE DO BADANIA",
-    description: `W celu wykonania badania zastosuj się do poniższych instrukcji
-      Na pół godziny przed badaniem nie podejmuj wysiłku fizycznego,
-      zrelaksuj się, ale nie urządzaj sobie drzemki.
-      Nie pij napojów działających pobudzająco, np. kawa, napoje
-      energetyczne.
-      Możesz w tym czasie coś zjeść i wypić przynajmniej szklankę wody
-      mineralnej niegazowanej.
-      Możesz też przygotować na czas badania wodę mineralną niegazowaną
-      do picia (najlepiej w małym, wygodnym naczyniu) i coś na przekąskę, np.
-      suszone owoce, orzechy.
-      Na czas badania wyłącz telefon komórkowy lub odłóż go na kilka metrów
-      od urządzenia.
-      `,
+    description: `Umieść urządzenie blisko swojego miejsca, tak aby był w zasięgu Twojego wzroku`,
+      video: true
   },
   {
     stage: "ETAP 2 -­ PRZYGOTOWANIE POMIESZCZENIA",
-    description: `Do wykonania badania wybierz ciche, ciepłe, dobrze wentylowane
-    pomieszczenie, z wygodnym miejscem do leżenia. Zadbaj o swój komfort.
-    W tym celu mogą się okazać przydatne poduszki lub unoszone wezgłowie.
-    `,
+    description: `Przygotuj żel do głowicy i ręcznik papierowy do wytarcia. Połóż je blisko urządzenia`,
+    video: true
   },
   {
     stage: "ETAP 3 ­- PRZYGOTOWANIE SPRZĘTU",
-    description: `Umieść urządzenie blisko miejsca, w którym będziesz wykonywała zapis,
-    najlepiej na wysokości wezgłowia.
-    Połóż po środku miejsca do leżenia 2 pasy: niebieski i różowy: niebieski bliżej
-    wezgłowia, różowy w odległości ok. 10 cm od niebieskiego.
-    Przygotuj żel do głowicy i ręcznik papierowy lub ligninę do wytarcia. Połóż je
-    blisko urządzenia`,
+    description: `Po środku miejsca do leżenia ułóż pas niebieski i różowy. Niebieski bliżej bezgłowia. Różowy w odległości około 10 cm od niebieskiego`,
+  video: true
   },
   {
     stage: "ETAP 4 - WYKONANIE BADANIA",
-    description: `Włącz aparat czarnym przyciskiem zlokalizowanym z tylu urządzenia, a następnie Połóż się wygodnie na boku, najlepiej lewym`,
+    description: `Włącz aparat czarnym przyciskiem z tyłu urządzenia.`,
     video: true
   },
   {
     stage: "ETAP 4 - WYKONANIE BADANIA",
-    description: `Użycie głowicy aparatu`,
+    description: `Odsłoń brzuch połóż się wygodnie na boku najlepiej lewym.`,
     video: true
   },
   {
     stage: "ETAP 4 - WYKONANIE BADANIA",
-    description: `Sprawdzanie odgłosów bicia serca Twojego dziecka`,
+    description: `Przyłóż żółtą głowicę po środku brzucha na wysokości pępka lub nieco wyżej.
+ Zapnij niebieski pas tak, żeby przytrzymywał głowicę ale nie powodował
+ ucisku. Głowica musi przylegać do skóry. Pamiętaj aby kabel nie
+ znajdował się pod pasem mocującym.`,
     video: true
   },
   {
     stage: "ETAP 4 - WYKONANIE BADANIA",
-    description: `Użycie czujniku ruchów dziecka`,
+    description: ` Na monitorze w prawym dolnym rogu powinna pojawić się liczba w kolorze żółtym.`,
     video: true
   },
   {
     stage: "ETAP 4 - WYKONANIE BADANIA",
-    description: `Wyzerowanie urządzenia`,
+    description: `Weź do ręki różową głowicę i nałóż na nią żel, następnie przyłóż ją do brzucha. Zacznij na
+wysokości około 10 cm poniżej pępka. Przesuwaj powoli głowice. Znajdź punkt w którym
+bicie serca Twojego dziecka słychać najwyraźniej. Możesz szukać po przeciwnej stronie od
+miejsca, gdzie ostatnio czułaś ruchy dziecka
+Gdy usłyszysz wyraźne bicie serca dziecka i na monitorze pojawi się
+ różowe serduszko oraz liczba, przytrzymaj głowice w tym punkcie i
+ przymocuj ją różowym pasem.`,
     video: true
   },
   {
     stage: "ETAP 4 - WYKONANIE BADANIA",
-    description: `Kontrolowanie czasu badania`,
+    description: `Chwyć szary mały czujnik podłączony do aparatu.
+ Przycisk wciskaj w momencie odczuwania ruchu dziecka - Zaznaczaj każdy ruch kliknięciem.`,
     video:true
   },
   {
     stage: "ETAP 4 - WYKONANIE BADANIA",
-    description: `ZAKOŃCZENIE BADANIA∙ \n Po upływie 30 minut wciśnij ten sam przycisk, co poprzednio – drugi od lewej strony. W tym momencie badanie zostało zakończone.`,
-    buttonImage: "",
+    description: ` Wyzeruj urządzenie pierwszym przyciskiem od prawej strony.`,
     video: true,
     timer: true
   },
   {
     stage: "ETAP 5 ­- ODŁĄCZENIE URZĄDZENIA",
-    description: `Odpięcie pasów`,
+    description: `Włącz drugi przycisk od lewej strony - Papier powinien nieznacznie się wysunąć.`,
     video: true
   },
   {
     stage: "ETAP 5 ­- ODŁĄCZENIE URZĄDZENIA",
-    description: `Zwinięcie pasów`,
+    description: `Od teraz badanie będzie trwało 30 minut. W trakcie badania nie zmieniaj znacząco
+pozycji - nie wykonuj gwałtownych ruchów. Możesz popijać wodę i zjeść przekąskę.`,
     video: true
   },
   {
     stage: "ETAP 5 ­- ODŁĄCZENIE URZĄDZENIA",
-    description: `Odciącie papieru z wynikami badań`,
+    description: `Po upływie 30 minut wciśnij drugi przycisk od lewej strony - Badanie zostało zakończone`,
     video: true
   },
   {
     stage: "ETAP 5 ­- ODŁĄCZENIE URZĄDZENIA",
-    description: `Wyłącz aparat czarnym przyciskiem z tyłu urządzenia`,
-    video: true,
-    buttonImage: ""
+    description: ` Odepnij niebieski pas i umieść niebieską głowice w bezpiecznym miejscu przy
+urządzeniu.`,
+    video: true
   },
   {
     stage: "ETAP 5 ­- ODŁĄCZENIE URZĄDZENIA",
-    description: `Podpisz zapis KTG imieniem i nazwiskiem. Umieść też na nim swój termin porodu.`,
+    description: `Teraz odepnij różowy pas i wyczyść głowicę z żelu.`,
     video: true
-  }
+  },
+  {
+    stage: "ETAP 5 ­- ODŁĄCZENIE URZĄDZENIA",
+    description: `Użyj ręcznika papierowego do wytarcia brzucha.`,
+    video: true
+  },
+  {
+    stage: "ETAP 5 ­- ODŁĄCZENIE URZĄDZENIA",
+    description: `Wstań. Zwiń pasy i umieść je przy aparacie.`,
+    video: true
+  },
+  {
+    stage: "ETAP 5 ­- ODŁĄCZENIE URZĄDZENIA",
+    description: `Wyłącz aparat czarnym przyciskiem z tyłu urządzenia.`,
+    video: true
+  },
+  {
+    stage: "ETAP 5 ­- ODŁĄCZENIE URZĄDZENIA",
+    description: `To wszystko gratulację. Właśnie sama wykonałaś badanie KTG.`,
+    video: true
+  },
 ]
 
 

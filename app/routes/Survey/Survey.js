@@ -18,10 +18,12 @@ class Survey extends Component {
     };
   }
   validateResults () {
-    return this.state.age.length;
+    return this.state.age.length
   }
   goToHomeScene () {
-    if (!this.validateResults()) { return; }
+    if (!this.validateResults()) {
+      alert("Wpisz swoj wiek zanim zakonczysz ankiete.")
+      return; }
     this.setState({ steps: this.props.steps});
     console.log(this.state);
     this.props.navigator.push({
@@ -69,7 +71,7 @@ class Survey extends Component {
           <Picker.Item key={i} label={value} value={value}/>)}
         </Picker>
 
-        <Button title="ZAKOŃCZ ANKIETĘ" onPress={this.goToHomeScene.bind(this)}/>
+        <Button title="ZAKOŃCZ ANKIETĘ" onPress={() => this.goToHomeScene()}/>
       </View>
     );
   }

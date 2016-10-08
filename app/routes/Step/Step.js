@@ -1,9 +1,13 @@
-import { View, Text, StyleSheet, Image, WebView } from "react-native";
+import { View, Text, Image, WebView } from "react-native";
 import React, { Component } from "react";
 import exponent from "exponent";
 import { Button, Container, Icon } from "react-native-elements";
+import EStyleSheet from "react-native-extended-stylesheet";
+
 import videos from "../../config/videos.js";
 import content from "../../config/content.js";
+import { styles } from "./styles";
+
 
 import { FontAwesome, Ionicons, Entypo } from "@exponent/vector-icons"
 
@@ -26,7 +30,13 @@ class Step extends Component {
 
   }
   nextStep () {
+
     const { actualStep, steps, feedback } = this.state;
+
+    // if (!feedback) {
+    //   alert("Oceń trudność kroku przed przystąpieniem do następnego kroku.");
+    //   return;
+    // }
     if (actualStep + 1 < scenesContent.length) {
       this.setState({
         actualStep: actualStep + 1,
@@ -78,17 +88,17 @@ class Step extends Component {
       <View style={styles.actions}>
         <Text style={styles.feedbackHeader}>Ocena kroku: </Text>
           <Entypo
-            style={styles.icon}
+            style={[styles.icon, (this.state.feedback === "sad") ? styles.clicked : {}]}
             name="emoji-sad"
             onPress={() => this.feedback("sad")}
             />
           <Entypo
-            style={styles.icon}
+            style={[styles.icon, (this.state.feedback === "neutral") ? styles.clicked : {}]}
             name="emoji-neutral"
             onPress={() => this.feedback("neutral")}
             />
           <Entypo
-            style={styles.icon}
+            style={[styles.icon, (this.state.feedback === "happy") ? styles.clicked : {}]}
             name="emoji-happy"
             onPress={() => this.feedback("happy")}
             />
@@ -96,11 +106,12 @@ class Step extends Component {
     );
   }
   renderVideo (actualStep) {
+    const { videoFinished } = this.state
     return (
       <Video
-        style={styles.video}
+        style={[styles.video, (videoFinished) ? { width: 0, height: 0, position: "absolute" } : {}]}
         resizeMode="stretch"
-        source={videos()[actualStep - 2]}
+        source={videos()[actualStep + 1]}
         onEnd={() => this.setState({ videoFinished: true })}
         />
     );
@@ -116,82 +127,24 @@ class Step extends Component {
 
         {video && this.renderVideo(actualStep)}
 
+
+
         {timer && videoFinished && this.renderTimer()}
 
-        {videoFinished && this.renderUserActions()}
+        {(videoFinished || !video) && this.renderUserActions()}
 
         <Button buttonStyle={styles.nextStep} onPress={this.nextStep.bind(this)} title="PRZEJDŹ DALEJ"/>
       </View>
     );
   }
 }
+
+
 function getFormattedTime(mins, secs) {
       const minutes = (mins < 10) ? `0${mins}` : mins;
       const seconds = (secs < 10) ? `0${secs}` : secs;
 			return `${minutes}:${seconds}`;
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "space-around",
-    backgroundColor: "#3F51B5",
-  },
-  header: {
-    fontSize: 50,
-    color: "#C5CAE9",
-    alignSelf: "center",
-    padding: 20
-  },
-  video: {
-    flex: 3,
-    alignSelf: "center",
-    width: (90/100) * 1280,
-    margin: 15,
-  },
-  actions: {
-    flexDirection: "row",
-    flex: 1,
-    alignSelf: "center",
-  },
-  feedbackHeader: {
-    alignSelf: "center"
-  },
-  description: {
-    fontSize: 25,
-    color: "#C5CAE9",
-    alignSelf: "center",
-    textAlign: "center"
-  },
-  nextStep: {
-    flex: 1,
-    backgroundColor: "#F50057",
-    maxHeight: 60,
-    margin: 15
-  },
-  icon: {
-    fontSize: 70,
-    color: "#000",
-    padding: 10,
-    color: "#C5CAE9",
-  },
-  timer: {
-    flex: 1,
-    flexDirection: "row"
-  },
-  timerTime: {
-    fontSize: 40,
-    color: "#C5CAE9",
-    flex: 1,
-    textAlign: "center",
-    alignItems: "center"
-  },
-  timerStart: {
-    backgroundColor: "lime",
-    flex: 1,
-    maxWidth: 150
-  }
-});
 
 export default Step;

@@ -4,9 +4,13 @@ const page = `<!DOCTYPE html>
     <meta charset="utf-8">
     <title></title>
     <style>
-      svg {
+      #svg2 {
         width: 100vw;
         height: 100vh;
+        margin: 15% auto;
+        display: flex;
+        justify-content: "center";
+        align-items: "center";
       }
       body {
         display: flex;

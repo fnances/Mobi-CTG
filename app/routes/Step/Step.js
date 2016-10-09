@@ -1,7 +1,8 @@
-import { View, Text, Image, WebView } from "react-native";
+import { View, Text, TouchableNativeFeedback, ScrollView } from "react-native";
 import React, { Component } from "react";
 import exponent from "exponent";
-import { Button, Container, Icon } from "react-native-elements";
+import { Button, Icon } from "react-native-elements";
+import { Spinner } from "native-base";
 import EStyleSheet from "react-native-extended-stylesheet";
 
 import videos from "../../config/videos.js";
@@ -25,25 +26,27 @@ class Step extends Component {
       steps: [],
       feedback: "",
       videoFinished: false,
-      actualTime: null
+      playAgain: false
     };
+    this.video = null;
 
   }
   nextStep () {
 
     const { actualStep, steps, feedback } = this.state;
 
-    // if (!feedback) {
-    //   alert("Oceń trudność kroku przed przystąpieniem do następnego kroku.");
-    //   return;
-    // }
+    if (!feedback) {
+      alert("Oceń trudność przed przystąpieniem do następnego kroku.");
+      return;
+    }
     if (actualStep + 1 < scenesContent.length) {
       this.setState({
         actualStep: actualStep + 1,
         steps: [...steps, { step: actualStep, feedback }],
         feedback: "",
-        videoFinished: false
-
+        videoFinished: false,
+        videoLoaded: false,
+        playAgain: false
       });
     }
     else {
@@ -57,7 +60,7 @@ class Step extends Component {
     this.setState({ feedback });
   }
   onVideoLoad () {
-      this.setState({ videoLoaded: true})
+    this.setState({ videoLoaded: true});
   }
   interval() {
     let timeToPass = 1800000;
@@ -102,18 +105,38 @@ class Step extends Component {
             name="emoji-happy"
             onPress={() => this.feedback("happy")}
             />
+
+            <TouchableNativeFeedback
+                onPress={() => this.setState({ videoFinished: false, playAgain: true })}>
+              <View style={styles.repeatButton}>
+                <Text> Oglądnij jeszcze raz.</Text>
+              </View>
+            </TouchableNativeFeedback>
+
+            <Button buttonStyle={styles.nextStep} onPress={this.nextStep.bind(this)} title="PRZEJDŹ DALEJ"/>
+
         </View>
     );
   }
   renderVideo (actualStep) {
-    const { videoFinished } = this.state
+    const { videoFinished, playAgain, videoLoaded } = this.state
+    if (playAgain) {
+      this.video.node.seek(0);
+    }
+
     return (
-      <Video
-        style={[styles.video, (videoFinished) ? { width: 0, height: 0, position: "absolute" } : {}]}
-        resizeMode="stretch"
-        source={videos()[actualStep + 1]}
-        onEnd={() => this.setState({ videoFinished: true })}
-        />
+            <View style={styles.video}>
+              {(videoLoaded) ? null : <Spinner color="pink" />}
+              <Video
+                ref={video => this.video = video}
+                style={[styles.video, (videoLoaded) ? {} : styles.opacity ]}
+                resizeMode="stretch"
+                volume={1.0}
+                source={videos()[actualStep + 1]}
+                onEnd={() => this.setState({ videoFinished: true })}
+                onLoad={() => this.setState({ videoLoaded: true })}
+                />
+            </View>
     );
   }
   render () {
@@ -122,18 +145,21 @@ class Step extends Component {
 
     return (
       <View style={styles.container} >
-        <Text style={styles.header}> {stage}</Text>
-        <Text style={styles.description}>{description}</Text>
+          <Text style={styles.header}> {stage}</Text>
 
-        {video && this.renderVideo(actualStep)}
+          <View style={styles.content}>
+            <ScrollView contentContainerStyle={styles.scrollableDescription}>
+              <Text ellipsizeMode="clip" style={styles.description}>{description}</Text>
+            </ScrollView>
 
+            {video && this.renderVideo(actualStep)}
+          </View>
 
+          <View style={styles.userActionsBar}>
+          {this.renderUserActions()}
+          {timer && videoFinished && this.renderTimer()}
+          </View>
 
-        {timer && videoFinished && this.renderTimer()}
-
-        {(videoFinished || !video) && this.renderUserActions()}
-
-        <Button buttonStyle={styles.nextStep} onPress={this.nextStep.bind(this)} title="PRZEJDŹ DALEJ"/>
       </View>
     );
   }

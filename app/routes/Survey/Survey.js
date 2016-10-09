@@ -5,6 +5,10 @@ import content from "../../config/content.js";
 
 const { surveyOptions } = content;
 
+import * as Firebase from 'firebase';
+
+const fb = new Firebase("https://mobictg-99c58.firebaseio.com/");
+
 class Survey extends Component {
   constructor () {
     super();
@@ -25,7 +29,9 @@ class Survey extends Component {
       alert("Wpisz swoj wiek zanim zakonczysz ankiete.")
       return; }
     this.setState({ steps: this.props.steps});
-    console.log(this.state);
+    fb.set({
+      ...this.state
+    });
     this.props.navigator.push({
       name: "HomeScene"
     });

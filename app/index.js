@@ -9,6 +9,14 @@ import EStyleSheet from "react-native-extended-stylesheet";
 
 import Logo from "./components/Logo/logo";
 
+const styles = EStyleSheet.create({
+container: {
+  width: "100%",
+  height: "100%",
+  backgroundColor: "#9B26AF"
+}
+});
+
 class Main extends Component {
   constructor () {
     super();
@@ -17,11 +25,7 @@ class Main extends Component {
       step: 1
     };
     EStyleSheet.build();
-    const { height, width } = Dimensions.get("window");
-    styles.container.height = height;
-    styles.container.width = width;
-
-    setTimeout(() => this.setState({ assetsLoaded: true}), 1500);
+    setTimeout(() => this.setState({ assetsLoaded: true}), 2000);
 
   }
   renderScene (route, navigator) {
@@ -47,26 +51,14 @@ class Main extends Component {
     if (!this.state.assetsLoaded) return <Logo />;
 
     const { scene } = this.state;
-    return (
-      <View style={styles.container} >
-
-        <Navigator
+    return ( <Navigator
           style={styles.container}
           initialRoute={{ name: "HomeScene"}}
           renderScene={this.renderScene}
-          configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid}/>
-
-      </View>
-    );
+          configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid}
+          />);
   }
 }
-
-const styles = StyleSheet.create({
-container: {
-  flex: 1
-}
-});
-
 export default Main;
 
 

@@ -2,26 +2,69 @@ import EStyleSheet from "react-native-extended-stylesheet";
 
 const styles = EStyleSheet.create({
   container: {
-    flex: 1,
+    width: "100%",
+    height: "100%",
     flexDirection: "column",
-    justifyContent: "space-around",
+    justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#3F51B5",
+    backgroundColor: "#011627"
+  },
+  scrollableDescription: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "20%"
+  },
+  userActionsBar: {
+    width: "100%",
+    position: "absolute",
+    maxHeight: 60,
+    bottom: 0,
+    backgroundColor: "#011627",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    left: 0
+  },
+  opacity: {
+    opacity: 0,
+    position: "absolute"
   },
   header: {
-    fontSize: 50,
-    color: "#C5CAE9",
-    alignSelf: "center",
-    padding: 20
+    fontSize: 25,
+    backgroundColor: "#011627",
+    color: "#EFFFE9",
+    width: "100%",
+    maxHeight: 50,
+    position: "absolute",
+    top: 0,
+    left: 0,
+    paddingLeft: 55
   },
   clicked: {
     color: "pink"
   },
+  repeatButton: {
+    width: "15%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  content: {
+    flex: 1,
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    flexWrap: "nowrap"
+  },
   video: {
-    flex: 3,
-    alignSelf: "center",
-    width: (90/100) * 1280,
-    margin: 15,
+    height: "90%",
+    marginVertical: 25,
+    width: "80%",
+    alignItems: "center",
+    justifyContent: "center",
+    borderLeftWidth: 10,
+    borderColor: "#EFFFE9",
   },
   actions: {
     flexDirection: "row",
@@ -31,25 +74,23 @@ const styles = EStyleSheet.create({
   feedbackHeader: {
     padding: 15,
     fontSize: 20,
-    color: "#ffffff"
+    color: "#EFFFE9"
   },
   description: {
     fontSize: 25,
-    color: "#C5CAE9",
-    alignSelf: "center",
-    textAlign: "center"
+    textAlign: "justify",
+    alignSelf: "center"
   },
   nextStep: {
     flex: 1,
-    backgroundColor: "#F50057",
+    backgroundColor: "#E71D36",
     maxHeight: 60,
+    maxWidth: "15%",
     margin: 15
   },
   icon: {
     fontSize: 70,
-    color: "#000",
-    padding: 10,
-    color: "#C5CAE9",
+    color: "#EFFFE9"
   },
   timer: {
     flex: 1,
@@ -57,7 +98,7 @@ const styles = EStyleSheet.create({
   },
   timerTime: {
     fontSize: 40,
-    color: "#C5CAE9",
+    color: "#EFFFE9",
     flex: 1,
     textAlign: "center",
     alignItems: "center"

@@ -4,7 +4,7 @@ import videos from "./videos.js";
 let scenesContent = [
     {
     stage: "ETAP 1 - PRZYGOTOWANIE DO BADANIA",
-    description: `Umieść urządzenie blisko swojego miejsca, tak aby był w zasięgu Twojego wzroku`,
+    description: `Umieść urządzenie blisko swojego miejsca, tak aby było w zasięgu Twojego wzroku`,
       video: true
   },
   {

@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "space-around",
-    backgroundColor: "#3F51B5"
+    backgroundColor:
   },
   header: {
     alignSelf: "center",
@@ -53,9 +53,10 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   button: {
-    backgroundColor: "#F50057",
+    backgroundColor:,
 
   }
 });
 
 export default HomeScene;
+ // "#F50057""#3F51B5"

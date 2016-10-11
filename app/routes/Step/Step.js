@@ -39,7 +39,7 @@ class Step extends Component {
       alert("Oceń trudność przed przystąpieniem do następnego kroku.");
       return;
     }
-    if (actualStep + 1 < scenesContent.length) {
+    if (actualStep < scenesContent.length) {
       this.setState({
         actualStep: actualStep + 1,
         steps: [...steps, { step: actualStep, feedback }],

@@ -5,9 +5,6 @@ import content from "../../config/content.js";
 
 const { surveyOptions } = content;
 
-import * as Firebase from 'firebase';
-
-const fb = new Firebase("https://mobictg-99c58.firebaseio.com/");
 
 class Survey extends Component {
   constructor () {
@@ -22,20 +19,28 @@ class Survey extends Component {
     };
   }
   validateResults () {
-    return this.state.age.length
+    return this.state.age.length;
   }
   goToHomeScene () {
     if (!this.validateResults()) {
       alert("Wpisz swoj wiek zanim zakonczysz ankiete.")
       return; }
-    this.setState({ steps: this.props.steps});
-    fb.set({
-      ...this.state
-    });
+
+      const stateToPass =  Object.assign({}, this.state, { steps: this.props.steps });
+      fetch("https://mobictgbackend.herokuapp.com/api/survey",
+       {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({ ...stateToPass })
+      });
+
+    this.setState({ age: "", steps: [] });
     this.props.navigator.push({
       name: "HomeScene"
     });
-
   }
   render () {
     return (

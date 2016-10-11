@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "space-around",
-    backgroundColor:
   },
   header: {
     alignSelf: "center",
@@ -53,8 +52,6 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   button: {
-    backgroundColor:,
-
   }
 });
 

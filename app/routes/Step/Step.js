@@ -16,8 +16,6 @@ const { scenesContent } = content;
 
 const { Video } = exponent.Components;
 
-const videosStartAtStep = 2;
-
 class Step extends Component {
   constructor () {
     super();
@@ -39,7 +37,7 @@ class Step extends Component {
       alert("Oceń trudność przed przystąpieniem do następnego kroku.");
       return;
     }
-    if (actualStep < scenesContent.length) {
+    if (actualStep + 1 < scenesContent.length) {
       this.setState({
         actualStep: actualStep + 1,
         steps: [...steps, { step: actualStep, feedback }],

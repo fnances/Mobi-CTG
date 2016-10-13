@@ -1,7 +1,8 @@
-import { View, Text, StyleSheet, Picker } from "react-native";
+import { View, Text, StyleSheet, Picker, NetInfo } from "react-native";
 import React, { Component } from "react";
 import { Button, FormLabel, FormInput } from "react-native-elements";
 import content from "../../config/content.js";
+import { MaterialIcons } from "@exponent/vector-icons"
 
 const { surveyOptions } = content;
 
@@ -15,38 +16,55 @@ class Survey extends Component {
       ktg: "pierwsze",
       stressLevel: "mały stres",
       satisfactionLevel: "mały",
-      steps: []
+      steps: [],
+      isConnected: false,
+      ageError: false,
     };
   }
-  validateResults () {
-    return this.state.age.length;
+  componentWillMount () {
+    NetInfo.isConnected.addEventListener("change", connection => {
+      console.log(connection);
+    });
   }
+  // validate () {
+  //   const { age } = this.state;
+  //   const isLetter = this.validateResults(age);
+  //   this.setState({ ageError: isLetter , age });
+  //   return (isLetter && age.length);
+  // }
+  // validateResults (result) {
+  //   console.log(result.split(""));
+  //   const isString = result.split('').every(letter => !isNaN(parseInt(letter, 10)) );
+  //   console.log(isString);
+  //   return isString;
+  // }
   goToHomeScene () {
-    if (!this.validateResults()) {
-      alert("Wpisz swoj wiek zanim zakonczysz ankiete.")
-      return; }
+    const stateToPass =  Object.assign({}, this.state, { steps: this.props.steps });
+    fetch("https://mobictgbackend.herokuapp.com/api/survey",
+     {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+      body: JSON.stringify({ ...stateToPass })
+    });
 
-      const stateToPass =  Object.assign({}, this.state, { steps: this.props.steps });
-      fetch("https://mobictgbackend.herokuapp.com/api/survey",
-       {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-        },
-        body: JSON.stringify({ ...stateToPass })
-      });
-
-    this.setState({ age: "", steps: [] });
-    this.props.navigator.push({
-      name: "HomeScene"
+  this.setState({ age: "", steps: [] });
+  this.props.navigator.push({
+    name: "HomeScene"
     });
   }
   render () {
     return (
       <View style={styles.container}>
-      <FormLabel> Wiek </FormLabel>
-      <FormInput onChangeText={age => this.setState({ age })} />
+        <View>
+          <FormLabel> Wiek </FormLabel>
+          <FormInput onChangeText={(age) => {
+            this.setState({ age });
+          }} />
+        </View>
+
 
         <FormLabel> Ciąza </FormLabel>
 

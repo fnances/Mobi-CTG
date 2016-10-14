@@ -1,5 +1,3 @@
-import EStyleSheet from "react-native-extended-stylesheet";
-
 const styles = EStyleSheet.create({
   container: {
     width: "100%",
@@ -7,7 +5,7 @@ const styles = EStyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#011627"
+    backgroundColor: "#2979ff"
   },
   scrollableDescription: {
     flexDirection: "column",
@@ -20,7 +18,7 @@ const styles = EStyleSheet.create({
     position: "absolute",
     maxHeight: 60,
     bottom: 0,
-    backgroundColor: "#011627",
+    backgroundColor: "#0091ea",
     flexDirection: "row",
     justifyContent: "space-around",
     left: 0
@@ -31,7 +29,7 @@ const styles = EStyleSheet.create({
   },
   header: {
     fontSize: 25,
-    backgroundColor: "#011627",
+
     color: "#EFFFE9",
     width: "100%",
     maxHeight: 50,
@@ -41,11 +39,11 @@ const styles = EStyleSheet.create({
     paddingLeft: 55
   },
   clicked: {
-    color: "pink"
+    color: "#01579b"
   },
   repeatButton: {
     width: "15%",
-    height: "100%",
+    height: 20,
     justifyContent: "center",
     alignItems: "center"
   },
@@ -70,6 +68,7 @@ const styles = EStyleSheet.create({
     flexDirection: "row",
     flex: 1,
     alignSelf: "center",
+
   },
   feedbackHeader: {
     padding: 15,
@@ -77,16 +76,18 @@ const styles = EStyleSheet.create({
     color: "#EFFFE9"
   },
   description: {
-    fontSize: 25,
+    fontSize: 20,
     textAlign: "justify",
-    alignSelf: "center"
+    alignSelf: "center",
+    color: "#fff",
+    textAlign: "center"
   },
   nextStep: {
     flex: 1,
-    backgroundColor: "#E71D36",
+    backgroundColor: "#1de9b6",
     maxHeight: 60,
     maxWidth: "15%",
-    margin: 15
+    margin: 10
   },
   icon: {
     fontSize: 70,

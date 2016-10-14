@@ -39,21 +39,23 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "space-around",
+    backgroundColor:"#2979ff"
+
   },
   header: {
     alignSelf: "center",
     fontSize: 50,
-    color: "#C5CAE9"
+    color: "#fff"
   },
   text: {
     fontSize: 25,
     alignSelf:"center",
-    color: "#C5CAE9",
+    color: "#fff",
     textAlign: "center"
   },
   button: {
+    backgroundColor: "#1de9b6",
   }
 });
 
 export default HomeScene;
- // "#F50057""#3F51B5"

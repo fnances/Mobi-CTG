@@ -59,14 +59,12 @@ class Survey extends Component {
     return (
       <View style={styles.container}>
         <View>
-          <FormLabel> Wiek </FormLabel>
-          <FormInput onChangeText={(age) => {
-            this.setState({ age });
-          }} />
+          <FormLabel style={styles.FormLabel}> Wiek </FormLabel>
+          <FormInput onChangeText={(age) => this.setState({ age })} />
         </View>
 
 
-        <FormLabel> Ciąza </FormLabel>
+        <FormLabel style={styles.FormLabel}> Ciąza </FormLabel>
 
         <Picker
           selectedValue={this.state.pregnancy}
@@ -74,7 +72,7 @@ class Survey extends Component {
         {surveyOptions.pregnancy.map((value, i) => <Picker.Item key={i} label={value} value={value}/>)}
         </Picker>
 
-        <FormLabel> Badanie KTG podczas tej ciązy </FormLabel>
+        <FormLabel style={styles.FormLabel}> Badanie KTG podczas tej ciązy </FormLabel>
 
         <Picker
           selectedValue={this.state.ktg}
@@ -82,7 +80,7 @@ class Survey extends Component {
         {surveyOptions.KTG.map((value, i) => <Picker.Item key={i} label={value} value={value}/>)}
         </Picker>
 
-        <FormLabel> Ocena poziomu stresu podczas wykonywania badania </FormLabel>
+        <FormLabel style={styles.FormLabel}> Ocena poziomu stresu podczas wykonywania badania </FormLabel>
 
         <Picker
           selectedValue={this.state.stressLevel}
@@ -91,7 +89,7 @@ class Survey extends Component {
           <Picker.Item key={i} label={value} value={value}/>)}
         </Picker>
 
-        <FormLabel> Poziom satysfakcji z wykonanego badania</FormLabel>
+        <FormLabel style={styles.FormLabel}> Poziom satysfakcji z wykonanego badania</FormLabel>
 
         <Picker
           selectedValue={this.state.satisfactionLevel}
@@ -100,7 +98,7 @@ class Survey extends Component {
           <Picker.Item key={i} label={value} value={value}/>)}
         </Picker>
 
-        <Button title="ZAKOŃCZ ANKIETĘ" onPress={() => this.goToHomeScene()}/>
+        <Button style={styles.button} title="ZAKOŃCZ ANKIETĘ" onPress={() => this.goToHomeScene()}/>
       </View>
     );
   }
@@ -109,10 +107,15 @@ class Survey extends Component {
 const styles = StyleSheet.create({
   container: {
     justifyContent: "space-around",
-    flex: 1
+    flex: 1,
+    backgroundColor: "#2979ff",
+
   },
-  text: {
-    alignItems: "center"
+  button: {
+    backgroundColor: "#1de9b6",
+  },
+  formlabel: {
+    color: "#fff"
   }
 });
 
